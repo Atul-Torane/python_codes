@@ -1,13 +1,16 @@
-# allArguments.py
+# module.py
 import argparse
+from logger import app_logger
 
 def parse_arguments():
-    """Function to parse command-line arguments"""
     parser = argparse.ArgumentParser(description="Argument parsing module")
 
-    # Add arguments
-    parser.add_argument('--name', type=str, help='Your name', required=True)
-    parser.add_argument('--age', type=int, help='Your age', required=True)
+    # Add arguments with default values
+    parser.add_argument('--name', type=str, help='Your name', default='Unknown')
+    parser.add_argument('--age', type=int, help='Your age', default=00)
 
-    # Parse and return arguments
-    return parser.parse_args()
+    # Log the parsed arguments
+    app_logger.debug("Parsing arguments.")
+    args = parser.parse_args()
+
+    return args
